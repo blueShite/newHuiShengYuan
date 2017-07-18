@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/zhuye1"
+        id="@+id/home"
+        title="主页"
+        barColorWhenSelected="F6564A"/>
+    <tab
+        icon="@drawable/zixun1"
+        id="@+id/Information"
+        title="资讯"
+        barColorWhenSelected="F6564A"/>
+    <tab
+        icon="@drawable/quanzi1"
+        id="@+id/Circle"
+        title="圈子"
+        barColorWhenSelected="F6564A"/>
+    <tab
+        icon="@drawable/wode1"
+        id="@+id/Person"
+        title="我的"
+        barColorWhenSelected="F6564A"/>
+</tabs>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appwhite"
+    tools:context="com.example.longhengyu.longcampus.com.example.xiaoyuan.longcampus.Information.InformationDetail.InformationDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar6"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/text_information_detail_titleName"
+                android:textSize="@dimen/mainText"
+                android:layout_gravity="center"
+                android:textColor="@color/appwhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:id="@+id/text_information_detail_name"
+                    android:layout_marginLeft="16dp"
+                    android:layout_centerVertical="true"
+                    android:text="夏日养生"
+                    android:textSize="@dimen/mainText"
+                    android:layout_width="200dp"
+                    android:lines="1"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/text_information_detail_time"
+                    android:layout_centerVertical="true"
+                    android:text="2017-09-08"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:textSize="@dimen/mainText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ColorLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_information_detail_from"
+                android:text="呵呵呵"
+                android:textSize="@dimen/mainText"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"/>
+
+            <ImageView
+                android:id="@+id/image_information_detail"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                />
+
+            <TextView
+                android:id="@+id/text_information_detail_sub"
+                android:layout_margin="16dp"
+                android:textSize="@dimen/mainText"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

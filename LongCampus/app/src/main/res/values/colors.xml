@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#F6564A</color>
+    <color name="colorPrimaryDark">#F6564A</color>
+    <color name="colorAccent">#F6564A</color>
+    <color name="appwhite">#ffffff</color>
+    <color name="ColorLine">#E4E5E6</color>
+    <color name="ColorDrank">#F6F6F6</color>
+    <color name="ColorBlcak">#000000</color>
+    <color name="ColorYellow">#F49427</color>
+    <color name="ColorTransparent">#00000000</color>
+    <color name="ColorBorBlack">#F5F5F5</color>
+    <color name="ColorCouponLeft">#D4D4D4</color>
+    <color name="ColorCouponRight">#B9B9B9</color>
+
+</resources>

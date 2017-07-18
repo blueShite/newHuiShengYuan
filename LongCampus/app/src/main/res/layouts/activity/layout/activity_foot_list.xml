@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.longhengyu.longcampus.com.example.xiaoyuan.longcampus.FootList.FootListActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/text_footList_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/appwhite"
+            android:textSize="@dimen/mainText"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <include
+        android:id="@+id/include_footList_header"
+        layout="@layout/view_shopcart_header"
+        ></include>
+    <FrameLayout
+        android:id="@+id/layout_footList"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_basket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_footList_shopCartSub"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/mainText"
+            android:textColor="@color/appwhite"
+            android:text="您的菜篮子是空的"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/text_footList_shopCart"
+            android:gravity="center"
+            android:textSize="@dimen/mainText"
+            android:textColor="@color/appwhite"
+            android:layout_gravity="right"
+            android:text="去下单"
+            android:background="#F8D545"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

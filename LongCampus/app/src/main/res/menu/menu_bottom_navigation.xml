@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_call"
+        android:icon="@drawable/zhuye1"
+        android:title="主页"/>
+    <item
+        android:id="@+id/item_mail"
+        android:icon="@drawable/zixun1"
+        android:title="资讯"/>
+
+    <item
+        android:id="@+id/item_quanzi"
+        android:icon="@drawable/quanzi1"
+        android:title="圈子"/>
+
+    <item
+        android:id="@+id/item_person"
+        android:icon="@drawable/wode1"
+        android:title="我的"/>
+</menu>

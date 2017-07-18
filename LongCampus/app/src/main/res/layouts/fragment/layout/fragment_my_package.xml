@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              tools:context="com.example.longhengyu.longcampus.com.example.xiaoyuan.longcampus.FootList.SubFootList.MyPackageFragment">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/packpage_classes_recycle"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/packpage_comm_refresh"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/packpage_comm_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+</LinearLayout>

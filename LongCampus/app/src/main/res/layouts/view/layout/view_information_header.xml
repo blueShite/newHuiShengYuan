@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner_information"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+    </com.youth.banner.Banner>
+
+    <LinearLayout
+        android:background="@color/ColorDrank"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <TextView
+            android:text="资讯"
+            android:textSize="@dimen/mainText"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/image_shopCartItem"/>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:background="@color/ColorLine"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_shopCartItem_name"
+        android:textSize="@dimen/mainText"
+        android:lines="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/image_shopCartItem"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/button_item_shopcart_collection"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/text_shopCartItem_sub"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:lines="2"
+        android:ellipsize="end"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_shopCartItem_price"
+        app:layout_constraintLeft_toRightOf="@+id/image_shopCartItem"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_shopCartItem_name"/>
+
+    <TextView
+        android:id="@+id/text_shopCartItem_price"
+        android:textSize="@dimen/mainText"
+        android:lines="1"
+        android:textColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/image_shopCartItem"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/text_shopCart_oldPrice"
+        android:textSize="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintLeft_toRightOf="@+id/text_shopCartItem_price"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/text_shopCart_oldNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="7dp"
+        android:text="TextView"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/text_shopCart_oldPrice"/>
+
+    <ImageView
+        android:id="@+id/image_shopCartItem_jia"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:srcCompat="@drawable/jia"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/text_shopCartItem_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintRight_toLeftOf="@+id/image_shopCartItem_jia"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/image_shopCartItem_jian"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/text_shopCartItem_num"
+        app:srcCompat="@drawable/jian"/>
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/ColorBlcak"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="@+id/text_shopCart_oldPrice"
+        app:layout_constraintRight_toRightOf="@+id/text_shopCart_oldPrice"
+        app:layout_constraintTop_toTopOf="@+id/text_shopCart_oldPrice"/>
+
+    <Button
+        android:id="@+id/button_item_shopcart_collection"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/collection_select"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_shopCartItem_sub"/>
+</android.support.constraint.ConstraintLayout>

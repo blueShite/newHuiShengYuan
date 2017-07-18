@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="@dimen/mainText"
+        android:textColor="@color/ColorBlcak"
+        android:id="@+id/text_shopcart_order_price"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_shopcart_order_name"
+        android:layout_width="0dp"
+        android:textColor="@color/ColorBlcak"
+        android:textSize="@dimen/mainText"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toLeftOf="@+id/text_shopcart_order_price"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="备注:"
+        android:textSize="@dimen/mainText"
+        android:textColor="@color/ColorBlcak"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/text_shopcart_order_name"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/ColorLine"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView59"/>
+
+    <EditText
+        android:id="@+id/edit_shopcart_order_remark"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/ColorBorBlack"
+        android:ems="10"
+        android:hint="(10个字以内,例如:少放辣椒,不要香菜)"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textSize="@dimen/smallText"
+        app:layout_constraintBottom_toTopOf="@+id/textView60"
+        app:layout_constraintLeft_toRightOf="@+id/textView59"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_shopcart_order_name"/>
+</android.support.constraint.ConstraintLayout>
