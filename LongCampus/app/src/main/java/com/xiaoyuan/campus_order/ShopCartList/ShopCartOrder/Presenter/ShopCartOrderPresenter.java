@@ -51,6 +51,7 @@ public class ShopCartOrderPresenter extends BasePresenter {
                     cartItemBean.setRes_names(itemBean.getRes_names());
                     cartItemBean.setTotal(itemBean.getTotal());
                     cartItemBean.setId(itemBean.getId());
+                    cartItemBean.setOnePrice(itemBean.getOnePrice());
                     itemList.add(cartItemBean);
                 }
             }else {

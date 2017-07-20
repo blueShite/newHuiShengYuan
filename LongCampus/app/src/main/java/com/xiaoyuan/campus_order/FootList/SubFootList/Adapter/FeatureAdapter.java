@@ -14,6 +14,7 @@ import com.xiaoyuan.campus_order.FootList.SubFootList.Interface.FeatureInterface
 import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.R;
 import com.squareup.picasso.Picasso;
+import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
 
 import java.util.List;
 
@@ -50,7 +51,8 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.ViewHold
         String imageStr = RequestTools.BaseUrl + bean.getLitpic();
         Picasso.with(mContext).load(imageStr).resize(100, 100).into(holder.mImagePackCommHeader);
         holder.mTextPackCommName.setText(bean.getDish());
-        holder.mTextPackCommSub.setText("¥" + bean.getPrice() + "元");
+        double price = Double.parseDouble(bean.getPrice())*Double.parseDouble(bean.getDiscount());
+        holder.mTextPackCommSub.setText("¥" + AppUtils.doubleZhuanMa(price) + "元");
         holder.mTextPackCommOldPrice.setText("原价:" + bean.getPrice() + "元");
         holder.mTextPackCommNum.setText(bean.getNums());
         if (bean.getIfkeep() == 0) {

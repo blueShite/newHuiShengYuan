@@ -19,6 +19,7 @@ import com.xiaoyuan.campus_order.ShopCartList.Bean.ShopCartPriceBean;
 import com.xiaoyuan.campus_order.ShopCartList.Interface.ShopCartListInterface;
 import com.xiaoyuan.campus_order.ShopCartList.Presenter.ShopCartListPresenter;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.ShopCartOrderActivity;
+import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -94,6 +95,12 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
     }
 
     @Override
+    public void requestShopListError(String error) {
+        mList.clear();
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void requestSubmitShopCartSucess(ShopCartPriceBean priceBean, String shopId, List<ShopCartItemBean> selectList) {
         Intent intent = new Intent(ShopCartListActivity.this, ShopCartOrderActivity.class);
         intent.putExtra("shopList", (Serializable) selectList);
@@ -120,7 +127,8 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
     }
 
     @Override
-    public void onClickItemAdd(int poist, final TextView addText) {
+    public void onClickItemAdd(int poist, final TextView addText, final TextView priceText) {
+
         final ShopCartItemBean bean = mList.get(poist);
         final String numsStr = (Integer.parseInt(bean.getNum()) + 1) + "";
         ShopcartRequest.requestShopCart(bean.getRes_id(), numsStr, bean.getMenu_id(),bean.getFlag(), ShopCartListActivity.this, new ShopCartChangeInterface() {
@@ -128,12 +136,13 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
             public void changeShopCart() {
                 bean.setNum(numsStr);
                 addText.setText(numsStr);
+                priceText.setText("¥"+AppUtils.doubleZhuanMa(bean.getOnePrice()*Double.parseDouble(numsStr)));
             }
         });
     }
 
     @Override
-    public void onClickItemReduce(final int poist, final TextView jianText) {
+    public void onClickItemReduce(final int poist, final TextView jianText, final TextView priceText) {
         final ShopCartItemBean bean = mList.get(poist);
         if (Integer.parseInt(bean.getNum()) < 1) {
             Toasty.error(ShopCartListActivity.this, "已经是0了,不能再少了").show();
@@ -169,6 +178,7 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
                 }
                 bean.setNum(numsStr);
                 jianText.setText(numsStr);
+                priceText.setText("¥"+AppUtils.doubleZhuanMa(bean.getOnePrice()*Double.parseDouble(numsStr)));
             }
         });
     }

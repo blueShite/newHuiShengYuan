@@ -53,6 +53,7 @@ public class ShopCartListPresenter extends BasePresenter {
                     List<ShopCartListBean> list = JSON.parseArray(response.getData(),ShopCartListBean.class);
                     mInterface.requestShopListSucess(handleList(list));
                 }else{
+                    mInterface.requestShopListError(response.getMes());
                     Toasty.error(mContext,response.getMes()).show();
                 }
             }
@@ -71,6 +72,8 @@ public class ShopCartListPresenter extends BasePresenter {
             for (ShopCartItemBean itemBean:listBean.getItmes()){
                 itemBean.setItemType("1");
                 itemBean.setSelectType("1");
+                double price = Double.parseDouble(itemBean.getTotal())/Double.parseDouble(itemBean.getNum());
+                itemBean.setOnePrice(price);
                 itemBeanList.add(itemBean);
             }
         }

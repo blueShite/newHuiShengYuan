@@ -14,6 +14,7 @@ import com.xiaoyuan.campus_order.FootList.SubFootList.Interface.MyPackpageInterf
 import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.R;
 import com.squareup.picasso.Picasso;
+import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
 
 import java.util.List;
 
@@ -50,7 +51,8 @@ public class PackpageCommAdapter extends RecyclerView.Adapter<PackpageCommAdapte
 
         FeatureBean commodityBean = mList.get(position);
         holder.mTextPackCommName.setText(commodityBean.getDish());
-        holder.mTextPackCommSub.setText("¥"+commodityBean.getPrice());
+        double price = Double.parseDouble(commodityBean.getPrice())*Double.parseDouble(commodityBean.getDiscount());
+        holder.mTextPackCommSub.setText("¥" + AppUtils.doubleZhuanMa(price) + "元");
         holder.mTextPackCommOldPrice.setText("原价"+commodityBean.getPrice());
         holder.mTextPackCommNum.setText(commodityBean.getNums());
         Picasso.with(mContext).load(RequestTools.BaseUrl + commodityBean.getLitpic()).resize(120, 120).into(holder.mImagePackCommHeader);

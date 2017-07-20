@@ -14,6 +14,7 @@ import com.xiaoyuan.campus_order.FootDetail.Interface.FootDetailInterface;
 import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.R;
 import com.squareup.picasso.Picasso;
+import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
 
 import java.util.List;
 
@@ -78,7 +79,8 @@ public class FootDetailAdapter extends RecyclerView.Adapter<FootDetailAdapter.Vi
                 Picasso.with(mContext).load(RequestTools.BaseUrl+mShopCartBean.getLitpic()).fit().centerCrop().into(holder.headerImage);
             }
             holder.numText.setText("月售"+mShopCartBean.getSalnum()+"份");
-            holder.priceText.setText("¥"+mShopCartBean.getPrice());
+            double price = Double.parseDouble(mShopCartBean.getPrice())*Double.parseDouble(mShopCartBean.getDiscount());
+            holder.priceText.setText("¥" + AppUtils.doubleZhuanMa(price) + "元");
             holder.oldPriceText.setText("原价"+mShopCartBean.getPrice()+"元");
             holder.addNumText.setText(mShopCartBean.getNums());
             holder.addImage.setOnClickListener(new View.OnClickListener() {

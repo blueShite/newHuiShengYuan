@@ -155,7 +155,7 @@ public class ShopCartOrderAdapter extends RecyclerView.Adapter<ShopCartOrderAdap
             return;
         }
         holder.mTextShopcartOrderName.setText(bean.getDish() + "x1");
-        holder.mTextShopcartOrderPrice.setText("¥" + bean.getTotal());
+        holder.mTextShopcartOrderPrice.setText("¥" + bean.getOnePrice());
         if (holder.mEditShopcartOrderRemark.getTag() instanceof TextWatcher) {
             holder.mEditShopcartOrderRemark.removeTextChangedListener((TextWatcher) holder.mEditShopcartOrderRemark.getTag());
         }

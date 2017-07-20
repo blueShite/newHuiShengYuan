@@ -21,6 +21,15 @@ public class ShopCartItemBean implements Serializable {
     private String id;
     private String selectType;
     private String litpic;
+    private double onePrice;
+
+    public double getOnePrice() {
+        return onePrice;
+    }
+
+    public void setOnePrice(double onePrice) {
+        this.onePrice = onePrice;
+    }
 
     public String getLitpic() {
         return litpic;

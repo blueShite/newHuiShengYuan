@@ -106,7 +106,7 @@ public class CollectionActivity extends BaseActivity implements CollectionInterf
     @Override
     public void requestCancelCollection(int index) {
         mList.remove(index);
-        collectAdapter.notifyItemRemoved(index);
+        collectAdapter.notifyDataSetChanged();
     }
 
     @Override

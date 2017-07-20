@@ -72,24 +72,23 @@ public class OrderReceiveAdapter extends RecyclerView.Adapter<OrderReceiveAdapte
             holder.mEditOrderReceivePing.removeTextChangedListener((TextWatcher) holder.mEditOrderReceivePing.getTag());
         }
         holder.mEditOrderReceivePing.setText(bean.getRemark());
-        holder.mEditOrderReceivePing.addTextChangedListener(new TextWatcher() {
+        TextWatcher watcher = new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence sequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence sequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable s) {
                 Log.e("tag1","-------"+position+"-------"+holder.mEditOrderReceivePing.getText().toString());
                 mInterface.itemEditText(position, holder.mEditOrderReceivePing.getText().toString());
             }
-        });
-        holder.mEditOrderReceivePing.setTag(position);
+        };
+        holder.mEditOrderReceivePing.addTextChangedListener(watcher);
+
+
+        holder.mEditOrderReceivePing.setTag(watcher);
 
         holder.mButtonOrderReceivePing.setOnClickListener(new View.OnClickListener() {
             @Override

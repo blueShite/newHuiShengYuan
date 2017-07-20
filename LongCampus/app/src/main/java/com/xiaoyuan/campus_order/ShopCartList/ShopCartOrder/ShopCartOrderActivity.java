@@ -151,6 +151,8 @@ public class ShopCartOrderActivity extends BaseActivity implements ShopCartOrder
         CouponBean bean = event.mCouponBean;
         mFootBean.setCouponSub(bean.getTitle());
         mFootBean.setCouponId(bean.getCpid());
+        double payPrice = Double.parseDouble(mFootBean.getPayPrice())-Double.parseDouble(bean.getAmount());
+        mFootBean.setPayPrice(payPrice+"");
         mAdapter.reloadFootView(mFootBean);
     }
 

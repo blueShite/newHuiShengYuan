@@ -91,13 +91,13 @@ public class ShopCartListAdapter extends RecyclerView.Adapter<ShopCartListAdapte
         holder.mImageShopcartListAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mInterface.onClickItemAdd(position, holder.mTextShopcartListNum);
+                mInterface.onClickItemAdd(position, holder.mTextShopcartListNum,holder.mTextShopcartListPrice);
             }
         });
         holder.mImageShopcartListRedux.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mInterface.onClickItemReduce(position, holder.mTextShopcartListNum);
+                mInterface.onClickItemReduce(position, holder.mTextShopcartListNum,holder.mTextShopcartListPrice);
             }
         });
         holder.selfView.setOnLongClickListener(new View.OnLongClickListener() {
