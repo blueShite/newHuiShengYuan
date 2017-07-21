@@ -1,5 +1,7 @@
 package com.xiaoyuan.campus_order.FootDetail.Presenter;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.xiaoyuan.campus_order.Base.BasePresenter;
 import com.xiaoyuan.campus_order.FootDetail.Bean.FootDetailBean;
@@ -47,6 +49,7 @@ public class FootDetailPresenter extends BasePresenter {
                 dismissDialog();
                 super.onResponse(response, id);
                 if(response.isRes()){
+                    Log.e("详情数据",response.getData());
                     FootDetailBean bean = JSON.parseArray(response.getData(),FootDetailBean.class).get(0);
                     if(path.equals("/api/getMealCont.api.php")){
                         bean.setMy(true);

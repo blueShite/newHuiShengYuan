@@ -11,28 +11,44 @@ import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.xiaoyuan.campus_order.Circle.CircleFragment;
 import com.xiaoyuan.campus_order.Home.HomeFragment;
 import com.xiaoyuan.campus_order.Home.SearchSchool.Event.SearchSchoolEvent;
 import com.xiaoyuan.campus_order.Information.InformationFragment;
 import com.xiaoyuan.campus_order.Manage.LoginManage;
+import com.xiaoyuan.campus_order.NetWorks.RequestBean;
+import com.xiaoyuan.campus_order.NetWorks.RequestCallBack;
+import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.Person.PersonFragment;
 import com.xiaoyuan.campus_order.PushAbout.ExampleUtil;
 import com.xiaoyuan.campus_order.PushAbout.LocalBroadcastManager;
 import com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper;
 
 import com.xiaoyuan.campus_order.R;
+import com.xiaoyuan.campus_order.Tab.Bean.UpdateAppBean;
 import com.xiaoyuan.campus_order.Tools.ActivityCollector;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import ezy.boost.update.DefaultUpdateChecker;
+import ezy.boost.update.ICheckAgent;
+import ezy.boost.update.IUpdateChecker;
+import ezy.boost.update.IUpdateParser;
+import ezy.boost.update.UpdateInfo;
+import ezy.boost.update.UpdateManager;
 import me.yokeyword.fragmentation.SupportActivity;
+import okhttp3.Call;
 
 import static  com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper.sequence;
 
@@ -50,8 +66,10 @@ public class TabActivity extends SupportActivity {
     private CircleFragment mCircleFragment;
     private InformationFragment mInformationFragment;
     private PersonFragment mPersonFragment;
-
     public static boolean isForeground = false;
+
+    String mCheckUrl = "http://client.waimai.baidu.com/message/updatetag";
+    String mUpdateUrl = "http://mobile.ac.qq.com/qqcomic_android.apk";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +82,52 @@ public class TabActivity extends SupportActivity {
         initBottomBar();
         JPushInterface.init(getApplicationContext());
         setAlias();
-        Log.e("push注册Id",JPushInterface.getRegistrationID(getApplicationContext()));
+        //updateApp();
+        reqeuestUpdate(AppUtils.getVersionName(this));
+    }
+
+    private void reqeuestUpdate(final String versionStr){
+        UpdateManager.create(TabActivity.this).setChecker(new DefaultUpdateChecker())
+                .setUrl(RequestTools.BaseUrl+"/api/update_app.api.php?"+"version="+versionStr)
+                .setNotifyId(998).setParser(new IUpdateParser() {
+            @Override
+            public UpdateInfo parse(String source) throws Exception {
+                Log.e("呵呵-----------",source);
+                UpdateAppBean bean = JSON.parseObject(source,UpdateAppBean.class);
+                if(bean.isRes()){
+                    if(bean.getData().getVersion()!=versionStr){
+                        UpdateInfo info = new UpdateInfo();
+                        info.hasUpdate = true;
+                        info.updateContent = bean.getData().getDetails();
+                        info.versionCode = 1;
+                        info.versionName = bean.getData().getVersion();
+                        info.url = bean.getData().getUrl();
+                        info.md5 = bean.getData().getSign();
+                        info.size = 1024*1024;
+                        info.isForce = true;
+                        info.isIgnorable = true;
+                        info.isSilent = false;
+                        return info;
+                    }
+                }
+                UpdateInfo info = new UpdateInfo();
+                info.hasUpdate = false;
+                info.updateContent = "呵呵";
+                info.versionCode = 1;
+                info.versionName = "1.1";
+                info.url = "";
+                info.md5 = "";
+                info.size = 1024;
+                info.isForce = false;
+                info.isIgnorable = false;
+                info.isSilent = false;
+                return info;
+            }
+        }).check();
+    }
+
+    private void updateApp(){
+
     }
 
     @Override
