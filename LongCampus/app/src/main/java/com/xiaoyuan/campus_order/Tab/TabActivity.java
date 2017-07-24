@@ -82,7 +82,6 @@ public class TabActivity extends SupportActivity {
         initBottomBar();
         JPushInterface.init(getApplicationContext());
         setAlias();
-        //updateApp();
         reqeuestUpdate(AppUtils.getVersionName(this));
     }
 
@@ -95,7 +94,7 @@ public class TabActivity extends SupportActivity {
                 Log.e("呵呵-----------",source);
                 UpdateAppBean bean = JSON.parseObject(source,UpdateAppBean.class);
                 if(bean.isRes()){
-                    if(bean.getData().getVersion()!=versionStr){
+                    if(!bean.getData().getVersion().equals(versionStr)){
                         UpdateInfo info = new UpdateInfo();
                         info.hasUpdate = true;
                         info.updateContent = bean.getData().getDetails();
@@ -103,7 +102,8 @@ public class TabActivity extends SupportActivity {
                         info.versionName = bean.getData().getVersion();
                         info.url = bean.getData().getUrl();
                         info.md5 = bean.getData().getSign();
-                        info.size = 1024*1024;
+                        double size = Double.parseDouble(bean.getData().getSize());
+                        info.size = (int)size*1024;
                         info.isForce = true;
                         info.isIgnorable = true;
                         info.isSilent = false;
@@ -124,10 +124,6 @@ public class TabActivity extends SupportActivity {
                 return info;
             }
         }).check();
-    }
-
-    private void updateApp(){
-
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.xiaoyuan.campus_order.FootDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,11 +16,13 @@ import com.xiaoyuan.campus_order.FootDetail.Interface.FootDetailInterface;
 import com.xiaoyuan.campus_order.FootDetail.Presenter.FootDetailPresenter;
 import com.xiaoyuan.campus_order.FootList.CollectionRequest.CollectionRequest;
 import com.xiaoyuan.campus_order.FootList.CollectionRequest.CollectionRequestInterface;
+import com.xiaoyuan.campus_order.FootList.FootListActivity;
 import com.xiaoyuan.campus_order.FootList.ShopCartRequest.ShopCartChangeInterface;
 import com.xiaoyuan.campus_order.FootList.ShopCartRequest.ShopcartRequest;
 import com.xiaoyuan.campus_order.FootList.SubFootList.Bean.FeatureBean;
 import com.xiaoyuan.campus_order.Manage.LoginManage;
 import com.xiaoyuan.campus_order.R;
+import com.xiaoyuan.campus_order.ShopCartList.ShopCartListActivity;
 
 import java.util.List;
 
@@ -33,6 +37,8 @@ public class FootDetailActivity extends BaseActivity implements FootDetailInterf
     RecyclerView mRecycleFootDetail;
     @BindView(R.id.button_footDetail_collection)
     Button mButtonFootDetailCollection;
+    @BindView(R.id.text_footDetail_shopCart)
+    TextView mTextFootDetailShopCart;
 
     private FeatureBean mBean;
     private FootDetailPresenter mPresenter = new FootDetailPresenter(this);
@@ -63,12 +69,20 @@ public class FootDetailActivity extends BaseActivity implements FootDetailInterf
         flag = getIntent().getStringExtra("flag");
         LinearLayoutManager manager = new LinearLayoutManager(FootDetailActivity.this);
         mRecycleFootDetail.setLayoutManager(manager);
+        mTextFootDetailShopCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FootDetailActivity.this, ShopCartListActivity.class);
+                intent.putExtra("resId",resId);
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.button_footDetail_collection)
     public void onViewClicked() {
-        if(mButtonFootDetailCollection.isSelected()){
-            Toasty.info(FootDetailActivity.this,"已经收藏过了").show();
+        if (mButtonFootDetailCollection.isSelected()) {
+            Toasty.info(FootDetailActivity.this, "已经收藏过了").show();
             return;
         }
         CollectionRequest.requestCollection(LoginManage.getInstance().getLoginBean().getId(),
@@ -83,9 +97,11 @@ public class FootDetailActivity extends BaseActivity implements FootDetailInterf
     @Override
     public void requestDetailSucess(FootDetailBean detailBean) {
 
-        if(detailBean.getIfkeep().equals("1")){
+        flag = detailBean.getFlag();
+        resId = detailBean.getRes_id();
+        if (detailBean.getIfkeep().equals("1")) {
             mButtonFootDetailCollection.setSelected(true);
-        }else {
+        } else {
             mButtonFootDetailCollection.setSelected(false);
         }
         List<FootDetailItemBean> list;

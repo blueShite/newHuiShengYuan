@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.longhengyu.longcampus.com.example.xiaoyuan.longcampus.FootDetail.FootDetailActivity">
+    tools:context=".FootDetail.FootDetailActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar8"
@@ -28,23 +28,66 @@
 
         <Button
             android:id="@+id/button_footDetail_collection"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
-            android:background="@drawable/collection_select"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
+            android:background="@drawable/collection_select"/>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_footDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar8"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar8"/>
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_basket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_footDetail_shopCartSub"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/mainText"
+            android:textColor="@color/appwhite"
+            android:text="您的菜篮子是空的"
+            android:layout_width="0dp"
+            android:visibility="invisible"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/text_footDetail_shopCart"
+            android:gravity="center"
+            android:textSize="@dimen/mainText"
+            android:textColor="@color/appwhite"
+            android:layout_gravity="right"
+            android:text="去下单"
+            android:background="#F8D545"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

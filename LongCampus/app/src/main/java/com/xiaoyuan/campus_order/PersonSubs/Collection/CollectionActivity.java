@@ -111,12 +111,17 @@ public class CollectionActivity extends BaseActivity implements CollectionInterf
 
     @Override
     public void onClickItemView(int poist) {
+
         Intent intent = new Intent(CollectionActivity.this, FootDetailActivity.class);
         FeatureBean bean = new FeatureBean();
         bean.setMenu_id(mList.get(poist).getMenu_id());
         intent.putExtra("featureBean",bean);
         intent.putExtra("isCollection","1");
-        intent.putExtra("isMyMenu","0");
+        if(mList.get(poist).getIfmeal()==1){
+            intent.putExtra("isMyMenu","1");
+        }else {
+            intent.putExtra("isMyMenu","0");
+        }
         startActivity(intent);
     }
 }

@@ -26,6 +26,7 @@ import com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralActivity;
 import com.xiaoyuan.campus_order.PersonSubs.Order.OrderActivity;
 import com.xiaoyuan.campus_order.PersonSubs.SetLike.SetLikeActivity;
 import com.xiaoyuan.campus_order.PersonSubs.SetPerson.SetPersonActivity;
+import com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper;
 import com.xiaoyuan.campus_order.R;
 import com.xiaoyuan.campus_order.Tools.ActivityCollector;
 
@@ -36,6 +37,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import me.yokeyword.fragmentation.SupportFragment;
+
+import static com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper.sequence;
 
 /**
  * Created by longhengyu on 2017/4/20.
@@ -172,6 +175,12 @@ public class PersonFragment extends SupportFragment implements PersonInterface {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface anInterface, int i) {
+                TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
+                tagAliasBean.setAction(3);
+                tagAliasBean.setAlias(LoginManage.getInstance().getLoginBean().getId());
+                tagAliasBean.setAliasAction(true);
+                sequence++;
+                TagAliasOperatorHelper.getInstance().handleAction(getContext(),sequence,tagAliasBean);
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 LoginManage.getInstance().saveLoginBean(null);

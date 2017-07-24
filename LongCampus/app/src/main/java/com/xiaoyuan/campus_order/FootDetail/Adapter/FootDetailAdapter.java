@@ -95,15 +95,6 @@ public class FootDetailAdapter extends RecyclerView.Adapter<FootDetailAdapter.Vi
                     mInterface.onClickRedux(holder.addNumText);
                 }
             });
-            if(mIsCollection.equals("1")){
-                holder.addImage.setVisibility(View.INVISIBLE);
-                holder.jianImage.setVisibility(View.INVISIBLE);
-                holder.addNumText.setVisibility(View.INVISIBLE);
-            }else {
-                holder.addImage.setVisibility(View.VISIBLE);
-                holder.jianImage.setVisibility(View.VISIBLE);
-                holder.addNumText.setVisibility(View.VISIBLE);
-            }
             return;
         }
 
