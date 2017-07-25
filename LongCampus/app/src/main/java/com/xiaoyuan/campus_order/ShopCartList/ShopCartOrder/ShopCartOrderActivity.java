@@ -312,7 +312,12 @@ public class ShopCartOrderActivity extends BaseActivity implements ShopCartOrder
         new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker picker, int i, int i1) {
-                String dateString = i+":"+i1;
+                String dateString;
+                if(i1<10){
+                    dateString = i+":"+"0"+i1;
+                }else {
+                    dateString = i+":"+i1;
+                }
                 mFootBean.setTime(dateString);
                 mAdapter.reloadFootView(mFootBean);
             }

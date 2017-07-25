@@ -67,10 +67,14 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
     @OnClick(R.id.button_shopcart_list_submit)
     public void onViewClicked() {
 
-        List<ShopCartItemBean> selecList = new ArrayList<>();
+        final List<ShopCartItemBean> selecList = new ArrayList<>();
+        int index = 0;
         for (ShopCartItemBean bean:mList){
             if(bean.getSelectType().equals("1")){
                 selecList.add(bean);
+                if(bean.getItemType().equals("0")){
+                    index++;
+                }
             }
         }
         if(selecList.size()<1){
@@ -84,7 +88,24 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
             }
         }
         shopId = shopId.substring(1);
-        mPresenter.requestSubmitShopCart(shopId,selecList);
+        if(index>1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ShopCartListActivity.this);
+            builder.setTitle("提示");
+            builder.setMessage("多窗口点餐会增加配送费哦!");
+            final String finalShopId = shopId;
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface anInterface, int i) {
+                    mPresenter.requestSubmitShopCart(finalShopId,selecList);
+                }
+            });
+            builder.setNegativeButton("取消",null);
+            builder.show();
+            return;
+        }else {
+            mPresenter.requestSubmitShopCart(shopId,selecList);
+        }
+
     }
 
     @Override
