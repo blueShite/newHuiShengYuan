@@ -18,8 +18,12 @@ import com.xiaoyuan.campus_order.ShopCartList.Bean.ShopCartItemBean;
 import com.xiaoyuan.campus_order.ShopCartList.Bean.ShopCartPriceBean;
 import com.xiaoyuan.campus_order.ShopCartList.Interface.ShopCartListInterface;
 import com.xiaoyuan.campus_order.ShopCartList.Presenter.ShopCartListPresenter;
+import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Event.FinishShopCartEvent;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.ShopCartOrderActivity;
 import com.xiaoyuan.campus_order.Tools.Common.utils.AppUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,7 +49,19 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_cart_list);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         customView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void onMessageEvent(FinishShopCartEvent event) {
+        finish();
     }
 
     @Override

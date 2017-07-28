@@ -32,6 +32,7 @@ import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Bean.AuthResult;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Bean.PayResult;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Bean.ShopCartOrderFootBean;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Event.CouponShopCartOrderEvent;
+import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Event.FinishShopCartEvent;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Interface.ShopCartOrderInterface;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Presenter.ShopCartOrderPresenter;
 
@@ -88,7 +89,10 @@ public class ShopCartOrderActivity extends BaseActivity implements ShopCartOrder
                                 Intent orderIntent = new Intent(ShopCartOrderActivity.this, OrderActivity.class);
                                 orderIntent.putExtra("selectIndex","1");
                                 startActivity(orderIntent);
+                                EventBus.getDefault().post(new FinishShopCartEvent("结束购物车界面"));
                                 finish();
+
+
                             }
                         }, 2000);
                     } else {
@@ -101,7 +105,10 @@ public class ShopCartOrderActivity extends BaseActivity implements ShopCartOrder
                                 Intent orderIntent = new Intent(ShopCartOrderActivity.this, OrderActivity.class);
                                 orderIntent.putExtra("selectIndex","0");
                                 startActivity(orderIntent);
+                                EventBus.getDefault().post(new FinishShopCartEvent("结束购物车界面"));
                                 finish();
+
+
                             }
                         }, 2000);
                     }
