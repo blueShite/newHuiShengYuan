@@ -17,8 +17,8 @@ public class RequestTools {
         return instance;
     }
 //    private static final String BaseUrl = "http://116.255.228.199:8010";
-//    public static final String BaseUrl = "http://www.hsydining-hall.com";
-    public static final String BaseUrl = "http://hsytest.hsydining-hall.com";
+    public static final String BaseUrl = "http://www.hsydining-hall.com";
+//    public static final String BaseUrl = "http://hsytest.hsydining-hall.com";
     public  void getRequest(String path, boolean isHeader, Map<String,String> map, String tag, RequestCallBack callback){
 
         String requestUrl = BaseUrl+path;
