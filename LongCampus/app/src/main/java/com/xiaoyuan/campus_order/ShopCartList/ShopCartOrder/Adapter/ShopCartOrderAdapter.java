@@ -160,19 +160,6 @@ public class ShopCartOrderAdapter extends RecyclerView.Adapter<ShopCartOrderAdap
             holder.mEditShopcartOrderRemark.removeTextChangedListener((TextWatcher) holder.mEditShopcartOrderRemark.getTag());
         }
         holder.mEditShopcartOrderRemark.setText(bean.getRemark());
-        /*holder.mEditShopcartOrderRemark.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                mTouchItemPosition = (Integer) view.getTag();
-                if((view.getId()==R.id.edit_shopcart_order_remark&& canVerticalScroll((EditText)view))){
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    if(event.getAction()==MotionEvent.ACTION_UP){
-                        view.getParent().requestDisallowInterceptTouchEvent(false);
-                    }
-                }
-                return false;
-            }
-        });*/
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
