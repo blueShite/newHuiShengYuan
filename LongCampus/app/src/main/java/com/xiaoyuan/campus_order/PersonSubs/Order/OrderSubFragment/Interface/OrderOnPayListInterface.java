@@ -22,5 +22,7 @@ public interface OrderOnPayListInterface {
 
     void onClickOrderItem(int poist);
 
+    void onClickLongOrderItem(int poist);
+
     void onClickPay(int poist);
 }

@@ -162,12 +162,21 @@ public class FeatureFragment extends SupportFragment implements FeatureInterface
         mFeatureRefresh.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mFeatureRefresh.finishRefreshing();
+                    return;
+                }
                 page = "1";
                 mPresenter.requestList(page, selectClassesBean.getRes_id());
             }
 
             @Override
             public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
+
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mFeatureRefresh.finishLoadmore();
+                    return;
+                }
                 int pageIndex = Integer.parseInt(page) + 1;
                 page = pageIndex + "";
                 mPresenter.requestList(page, selectClassesBean.getRes_id());

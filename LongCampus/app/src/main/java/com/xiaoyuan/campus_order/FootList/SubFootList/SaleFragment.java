@@ -156,12 +156,20 @@ public class SaleFragment extends SupportFragment implements SaleInterface {
         mSaleRefresh.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mSaleRefresh.finishRefreshing();
+                    return;
+                }
                 page = "1";
                 mPresenter.requestList(selectClassesBean.getRes_id(), page);
             }
 
             @Override
             public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mSaleRefresh.finishLoadmore();
+                    return;
+                }
                 int pageIndex = Integer.parseInt(page) + 1;
                 page = pageIndex + "";
                 mPresenter.requestList(selectClassesBean.getRes_id(), page);

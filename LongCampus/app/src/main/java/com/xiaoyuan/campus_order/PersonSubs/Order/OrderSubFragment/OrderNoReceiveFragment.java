@@ -142,6 +142,11 @@ public class OrderNoReceiveFragment extends SupportFragment implements OrderOnPa
     }
 
     @Override
+    public void onClickLongOrderItem(int poist) {
+
+    }
+
+    @Override
     public void onClickPay(int poist) {
 
     }

@@ -157,12 +157,21 @@ public class RecommendFragment extends SupportFragment implements RecommendInter
         mRecommendRefresh.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mRecommendRefresh.finishRefreshing();
+                    return;
+                }
                 page = "1";
                 mPresenter.requestList(page, selectClassesBean.getRes_id(), "1");
             }
 
             @Override
             public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
+
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mRecommendRefresh.finishLoadmore();
+                    return;
+                }
                 int pageIndex = Integer.parseInt(page) + 1;
                 page = pageIndex + "";
                 mPresenter.requestList(page, selectClassesBean.getRes_id(), "1");

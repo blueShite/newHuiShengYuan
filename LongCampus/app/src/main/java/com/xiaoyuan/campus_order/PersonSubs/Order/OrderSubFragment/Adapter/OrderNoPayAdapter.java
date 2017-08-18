@@ -102,6 +102,14 @@ public class OrderNoPayAdapter extends RecyclerView.Adapter<OrderNoPayAdapter.Vi
             }
         });
 
+        holder.selfView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mInterface.onClickLongOrderItem(position);
+                return false;
+            }
+        });
+
     }
 
     @Override

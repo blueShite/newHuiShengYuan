@@ -1,10 +1,13 @@
 package com.xiaoyuan.campus_order.PersonSubs.Order.OrderSubFragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,11 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alipay.sdk.app.PayTask;
+import com.xiaoyuan.campus_order.Login.LoginActivity;
 import com.xiaoyuan.campus_order.Manage.LoginManage;
+import com.xiaoyuan.campus_order.NetWorks.RequestBean;
+import com.xiaoyuan.campus_order.NetWorks.RequestCallBack;
+import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.PersonSubs.Order.OrderSubFragment.Adapter.OrderNoPayAdapter;
 import com.xiaoyuan.campus_order.PersonSubs.Order.OrderSubFragment.Bean.OrderBean;
 import com.xiaoyuan.campus_order.PersonSubs.Order.OrderSubFragment.Interface.OrderOnPayListInterface;
 import com.xiaoyuan.campus_order.PersonSubs.Order.OrderSubFragment.Presenter.OrderNoPayPresenter;
+import com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper;
 import com.xiaoyuan.campus_order.R;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Bean.AuthResult;
 import com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.Bean.PayResult;
@@ -26,8 +34,10 @@ import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.xiaoyuan.campus_order.Tools.ActivityCollector;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +45,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import me.yokeyword.fragmentation.SupportFragment;
+import okhttp3.Call;
+
+import static com.xiaoyuan.campus_order.PushAbout.TagAliasOperatorHelper.sequence;
 
 /**
  * Created by longhengyu on 2017/7/8.
@@ -216,8 +229,48 @@ public class OrderNoPayFragment extends SupportFragment implements OrderOnPayLis
     }
 
     @Override
+    public void onClickLongOrderItem(final int poist) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("提示");
+        builder.setMessage("确定删除此订单吗?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface anInterface, int i) {
+                requestDeleteOrder(mList.get(poist).getId(),poist);
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.show();
+    }
+
+    @Override
     public void onClickPay(int poist) {
         OrderBean bean = mList.get(poist);
         mPresenter.requestPay(bean.getId());
+    }
+
+    private void requestDeleteOrder(String orderId, final int poist){
+
+        Map<String,String> map = new HashMap<>();
+        map.put("id",orderId);
+        RequestTools.getInstance().postRequest("/api/del_order.api.php", false, map, "", new RequestCallBack(getContext()) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                super.onError(call, e, id);
+                Toasty.error(getContext(),"删除失败").show();
+            }
+
+            @Override
+            public void onResponse(RequestBean response, int id) {
+                super.onResponse(response, id);
+                if(response.isRes()){
+                    Toasty.success(getContext(),"删除订单成功!").show();
+                    mList.remove(poist);
+                    mAdapter.notifyDataSetChanged();
+                }else {
+                    Toasty.error(getContext(),response.getMes()).show();
+                }
+            }
+        });
     }
 }

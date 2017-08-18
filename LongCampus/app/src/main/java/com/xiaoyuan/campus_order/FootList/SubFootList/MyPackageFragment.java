@@ -133,6 +133,10 @@ public class MyPackageFragment extends SupportFragment implements MyPackpageInte
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
 
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mPackpageCommRefresh.finishRefreshing();
+                    return;
+                }
                 page = "1";
                 mPresenter.requestCommodityList(LoginManage.getInstance().getLoginBean().getHate(),
                         LoginManage.getInstance().getLoginBean().getLike_id(),page,selectClassesBean.getRes_id(),
@@ -142,6 +146,10 @@ public class MyPackageFragment extends SupportFragment implements MyPackpageInte
             @Override
             public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
 
+                if(selectClassesBean==null||selectClassesBean.getRes_id().length()<1){
+                    mPackpageCommRefresh.finishLoadmore();
+                    return;
+                }
                 int pageIndex = Integer.parseInt(page)+1;
                 page = pageIndex+"";
                 mPresenter.requestCommodityList(LoginManage.getInstance().getLoginBean().getHate(),
