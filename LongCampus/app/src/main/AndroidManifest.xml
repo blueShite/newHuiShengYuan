@@ -168,16 +168,20 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="dbHEFcxcLGPeBaeGVWk5PECiN6NpvhXk"/>
 
-        <activity android:name="com.xiaoyuan.campus_order.Login.LoginActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Login.LoginActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.xiaoyuan.campus_order.Tab.TabActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden">
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.Information.InformationDetail.InformationDetailActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Information.InformationDetail.InformationDetailActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.Splash.SplashActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Splash.SplashActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -186,53 +190,76 @@
         </activity>
         <activity
             android:name="com.xiaoyuan.campus_order.Circle.CircleDetail.CircleDetailActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.ShopCart.ShopCartActivity">
+        <activity android:name="com.xiaoyuan.campus_order.ShopCart.ShopCartActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.FootDetail.FootDetailActivity">
+        <activity android:name="com.xiaoyuan.campus_order.FootDetail.FootDetailActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.ShopCart.TodayFeatureActivity">
+        <activity android:name="com.xiaoyuan.campus_order.ShopCart.TodayFeatureActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.ShopCart.MyMenuActivity">
+        <activity android:name="com.xiaoyuan.campus_order.ShopCart.MyMenuActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Collection.CollectionActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Collection.CollectionActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Order.OrderActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Order.OrderActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.xiaoyuan.campus_order.PersonSubs.SetLike.SetLikeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.AboutUs.AboutUsActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.AboutUs.AboutUsActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Feedback.FeedbackActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Feedback.FeedbackActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.SetPerson.SetPersonActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.SetPerson.SetPersonActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.FootList.FootListActivity">
+        <activity android:name="com.xiaoyuan.campus_order.FootList.FootListActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.Circle.ReleaseCircle.ReleaseCircleActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Circle.ReleaseCircle.ReleaseCircleActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Address.AddressListActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Address.AddressListActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Address.AddAddressActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Address.AddAddressActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponOverdueActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponOverdueActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponReceiveActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Coupon.CouponReceiveActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.ShopCartList.ShopCartListActivity">
+        <activity android:name="com.xiaoyuan.campus_order.ShopCartList.ShopCartListActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralExchange.IntegralExchangeActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralExchange.IntegralExchangeActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralExchange.ExchangeRecord.ExchangeRecordActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Integral.IntegralExchange.ExchangeRecord.ExchangeRecordActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.ShopCartOrderActivity">
+        <activity android:name="com.xiaoyuan.campus_order.ShopCartList.ShopCartOrder.ShopCartOrderActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -246,13 +273,17 @@
             android:exported="false"
             android:screenOrientation="behind">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Order.OrderDetail.OrderDetailActivity">
+        <activity android:name="com.xiaoyuan.campus_order.PersonSubs.Order.OrderDetail.OrderDetailActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.Login.Register.RegisterActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Login.Register.RegisterActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.Home.SearchSchool.SearchSchoolActivity">
+        <activity android:name="com.xiaoyuan.campus_order.Home.SearchSchool.SearchSchoolActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.xiaoyuan.campus_order.FootList.FootListBanner.FootListBannerActivity">
+        <activity android:name="com.xiaoyuan.campus_order.FootList.FootListBanner.FootListBannerActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 
