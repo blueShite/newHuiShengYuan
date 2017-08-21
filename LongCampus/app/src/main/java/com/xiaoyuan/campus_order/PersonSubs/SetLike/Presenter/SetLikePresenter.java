@@ -166,4 +166,31 @@ public class SetLikePresenter extends BasePresenter {
         });
     }
 
+    public void requestSubmitLikeHate(final String likeStr,final String hateStr, String uId){
+
+        showDialog();
+        Map<String,String> map = new HashMap<>();
+        map.put("perf",likeStr);
+        map.put("hate",hateStr);
+        map.put("uid",uId);
+        RequestTools.getInstance().postRequest("/api/add_person.api.php", false, map, "", new RequestCallBack(mContext) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                dismissDialog();
+                super.onError(call, e, id);
+            }
+
+            @Override
+            public void onResponse(RequestBean response, int id) {
+                dismissDialog();
+                super.onResponse(response, id);
+                if(response.isRes()){
+                    mInterface.requestSubmitAll(likeStr, hateStr);
+                }else {
+                    Toasty.error(mContext,response.getMes()).show();
+                }
+            }
+        });
+    }
+
 }
