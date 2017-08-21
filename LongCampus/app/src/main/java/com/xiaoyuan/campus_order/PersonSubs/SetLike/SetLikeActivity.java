@@ -260,14 +260,34 @@ public class SetLikeActivity extends BaseActivity implements SetLikeInterface {
 
     @OnClick(R.id.text_setLike_submit)
     public void onViewClicked() {
-        if(likeList.size()<1){
-            Toasty.error(SetLikeActivity.this,"请选择你喜欢的类别").show();
+
+        if(likeList.size()<1&&hateList.size()<1){
+            Toasty.error(SetLikeActivity.this,"请选择你喜好或厌恶的类别").show();
             return;
         }
-        if(hateList.size()<1){
-            Toasty.error(SetLikeActivity.this,"请选择你厌恶的类别").show();
+
+        if(likeList.size()>0&&hateList.size()<1){
+            StringBuilder likeSb = new StringBuilder();
+            for (SetLikeBean bean : likeList) {// 增强for循环.
+                likeSb.append(bean.getFood() + ",");
+            }
+            String likeResult = likeSb.toString();
+            String likeData = likeResult.substring(0, likeResult.length()-1);
+            mPresenter.requestSubmitLike(likeData,LoginManage.getInstance().getLoginBean().getId());
             return;
         }
+
+        if(likeList.size()<1&&hateList.size()>0){
+            StringBuilder sb = new StringBuilder();
+            for (SetLikeBean bean : hateList) {// 增强for循环.
+                sb.append(bean.getFood() + ",");
+            }
+            String result = sb.toString();
+            String hadeData = result.substring(0, result.length()-1);
+            mPresenter.requestSubmitHate(hadeData,LoginManage.getInstance().getLoginBean().getId());
+            return;
+        }
+
         StringBuilder likeSb = new StringBuilder();
         for (SetLikeBean bean : likeList) {// 增强for循环.
             likeSb.append(bean.getFood() + ",");
@@ -280,11 +300,42 @@ public class SetLikeActivity extends BaseActivity implements SetLikeInterface {
         }
         String result = sb.toString();
         String hadeData = result.substring(0, result.length()-1);
-        mPresenter.requestSubmitLike(likeData,hadeData,LoginManage.getInstance().getLoginBean().getId());
+        mPresenter.requestSubmitAll(likeData,hadeData,LoginManage.getInstance().getLoginBean().getId());
+
     }
 
     @Override
-    public void requestSubmit(String likeStr, String hateStr) {
+    public void requestLikeSubmit(String likeStr) {
+        LoginBean bean = LoginManage.getInstance().getLoginBean();
+        bean.setLike_id(likeStr);
+        LoginManage.getInstance().saveLoginBean(bean);
+        Toasty.success(SetLikeActivity.this,"提交成功").show();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void requestHateSubmit(String hateStr) {
+        LoginBean bean = LoginManage.getInstance().getLoginBean();
+        bean.setHate(hateStr);
+        LoginManage.getInstance().saveLoginBean(bean);
+        Toasty.success(SetLikeActivity.this,"提交成功").show();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void requestSubmitAll(String likeStr, String hateStr) {
         LoginBean bean = LoginManage.getInstance().getLoginBean();
         bean.setLike_id(likeStr);
         bean.setHate(hateStr);

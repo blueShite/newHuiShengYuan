@@ -10,7 +10,9 @@ import java.util.List;
 
 public interface SetLikeInterface {
 
-    void requestSubmit(String likeStr,String hateStr);
+    void requestLikeSubmit(String likeStr);
+    void requestHateSubmit(String hateStr);
+    void requestSubmitAll(String likeStr,String hateStr);
     void requestFootTypeList(List<SetLikeBean> list);
     void requestFlavorList(List<SetLikeBean> list);
 
