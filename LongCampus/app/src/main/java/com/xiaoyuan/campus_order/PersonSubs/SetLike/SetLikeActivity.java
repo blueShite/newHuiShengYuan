@@ -261,10 +261,6 @@ public class SetLikeActivity extends BaseActivity implements SetLikeInterface {
     @OnClick(R.id.text_setLike_submit)
     public void onViewClicked() {
 
-        if(likeList.size()<1&&hateList.size()<1){
-            Toasty.error(SetLikeActivity.this,"请选择你喜好或厌恶的类别").show();
-            return;
-        }
         String likeData = "";
         String hadeData = "";
         if(likeList.size()>0){

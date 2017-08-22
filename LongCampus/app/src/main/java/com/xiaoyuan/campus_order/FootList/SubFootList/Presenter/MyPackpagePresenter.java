@@ -9,6 +9,7 @@ import com.xiaoyuan.campus_order.Manage.LoginManage;
 import com.xiaoyuan.campus_order.NetWorks.RequestBean;
 import com.xiaoyuan.campus_order.NetWorks.RequestCallBack;
 import com.xiaoyuan.campus_order.NetWorks.RequestTools;
+import com.xiaoyuan.campus_order.Tools.Common.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,11 +62,11 @@ public class MyPackpagePresenter extends BasePresenter {
     public void requestCommodityList(String hateId,String likeId, String page, final String resId, String uId, String taboos, final boolean isFirst){
         showDialog();
         Map<String,String> map = new HashMap<>();
-        if(hateId!=null&&!hateId.isEmpty()){
-            //map.put("hate",hateId);
+        if(!StringUtils.isEmpty(hateId)){
+            map.put("hate",hateId);
         }
-        if(likeId!=null&&!likeId.isEmpty()){
-            //map.put("like",likeId);
+        if(!StringUtils.isEmpty(likeId)){
+            map.put("like",likeId);
         }
         map.put("page",page);
         map.put("res_id",resId);
