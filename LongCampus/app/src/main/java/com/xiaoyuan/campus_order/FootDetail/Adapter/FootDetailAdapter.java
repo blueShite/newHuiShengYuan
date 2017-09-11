@@ -98,7 +98,7 @@ public class FootDetailAdapter extends RecyclerView.Adapter<FootDetailAdapter.Vi
             return;
         }
 
-        FootDetailItemBean bean = mList.get(position);
+        FootDetailItemBean bean = mList.get(position-1);
         holder.itemNameText.setText(bean.getName());
         holder.itemSubText.setText(bean.getSub());
 
@@ -106,7 +106,7 @@ public class FootDetailAdapter extends RecyclerView.Adapter<FootDetailAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList.size()+1;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -107,7 +107,7 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
         if(index>1){
             AlertDialog.Builder builder = new AlertDialog.Builder(ShopCartListActivity.this);
             builder.setTitle("提示");
-            builder.setMessage("多窗口点餐会增加配送费哦!");
+            builder.setMessage("跨窗口点餐会增加配送费用，增加的配送费用会由送餐员以现金形式返还，请放心点餐!");
             final String finalShopId = shopId;
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override

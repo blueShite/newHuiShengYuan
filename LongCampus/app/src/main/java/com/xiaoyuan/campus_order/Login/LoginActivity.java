@@ -30,6 +30,8 @@ public class LoginActivity extends BaseActivity implements LoginInterface {
     Button mButtonLoginLogin;
     @BindView(R.id.text_login_register)
     TextView mTextLoginRegister;
+    @BindView(R.id.button_login_reSet)
+    Button mButtonLoginReSet;
 
     private LoginPresenter mLoginPresenter = new LoginPresenter(this);
 
@@ -48,7 +50,7 @@ public class LoginActivity extends BaseActivity implements LoginInterface {
         });
     }
 
-    @OnClick({R.id.text_login_register, R.id.button_login_login})
+    @OnClick({R.id.text_login_register, R.id.button_login_login,R.id.button_login_reSet})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.text_login_register:
@@ -63,6 +65,11 @@ public class LoginActivity extends BaseActivity implements LoginInterface {
                     return;
                 }
                 mLoginPresenter.requestLogin(mEditLoginAccount.getText().toString(), mEditLoginPassword.getText().toString());
+                break;
+            case R.id.button_login_reSet:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("RegisterType","2");
+                startActivity(intent);
                 break;
             default:
                 break;

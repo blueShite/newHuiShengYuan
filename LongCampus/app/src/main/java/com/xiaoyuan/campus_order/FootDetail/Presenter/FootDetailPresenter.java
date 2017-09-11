@@ -66,7 +66,7 @@ public class FootDetailPresenter extends BasePresenter {
 
         List<FootDetailItemBean> list = new ArrayList<>();
         if(bean.getFoodma().length()>0){
-            list.add(new FootDetailItemBean("主要食材",bean.getFoodma()));
+            list.add(new FootDetailItemBean("菜品介绍",bean.getFoodma()));
         }
         if(bean.getTact().length()>0){
             list.add(new FootDetailItemBean("做法",bean.getTact()));

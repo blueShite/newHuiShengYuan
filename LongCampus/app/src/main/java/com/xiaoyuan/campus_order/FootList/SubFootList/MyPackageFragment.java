@@ -80,14 +80,21 @@ public class MyPackageFragment extends SupportFragment implements MyPackpageInte
         mCanteenBean =(CanteenBean) getArguments().getSerializable("canteenBean");
         ButterKnife.bind(this, mView);
         customView();
+        page="1";
+        mPresenter.requestClassesList(mCanteenBean.getRes_id());
         return mView;
     }
 
     @Override
     public void onSupportVisible() {
         super.onSupportVisible();
-        page="1";
-        mPresenter.requestClassesList(mCanteenBean.getRes_id());
+        if(selectClassesBean==null||selectClassesBean.getRes_id()==null){
+            return;
+        }
+        page = "1";
+        mPresenter.requestCommodityList(LoginManage.getInstance().getLoginBean().getHate(),
+                LoginManage.getInstance().getLoginBean().getLike_id(),page,selectClassesBean.getRes_id(),
+                LoginManage.getInstance().getLoginBean().getId(),LoginManage.getInstance().getLoginBean().getTaboos(),false);
     }
 
     private void customView(){

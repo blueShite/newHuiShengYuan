@@ -41,6 +41,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:textSize="@dimen/smallText"
+        android:lines="3"
+        android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/image_homeItem_canteen"
         app:layout_constraintRight_toRightOf="parent"
