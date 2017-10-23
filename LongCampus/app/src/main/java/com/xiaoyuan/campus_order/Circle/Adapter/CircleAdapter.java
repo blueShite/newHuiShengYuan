@@ -108,7 +108,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.ViewHolder
         holder.timeText.setText(all[0]);
         holder.zanText.setText("点赞"+"("+bean.getNum()+")");
         holder.pinglunText.setText("评论"+"("+bean.getReply_num()+")");
-        String imageUrl = RequestTools.BaseUrl+bean.getGroup_litpic().get(0);
+        String imageUrl = RequestTools.BaseUrl+bean.getHeadimg();
         Picasso.with(mContext).load(imageUrl).resize(70,70).into(holder.mImageView);
         holder.selfView.setOnClickListener(new View.OnClickListener() {
             @Override

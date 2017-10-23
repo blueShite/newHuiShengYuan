@@ -1,5 +1,7 @@
 package com.xiaoyuan.campus_order.FootList.SubFootList.Presenter;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.xiaoyuan.campus_order.Base.BasePresenter;
 import com.xiaoyuan.campus_order.FootList.SubFootList.Bean.FeatureBean;
@@ -89,6 +91,7 @@ public class MyPackpagePresenter extends BasePresenter {
                 dismissDialog();
                 super.onResponse(response, id);
                 if(response.isRes()){
+                    Log.e("餐单数据",response.getData());
                     List<FeatureBean> list = JSON.parseArray(response.getData(),FeatureBean.class);
                     if(isFirst){
                         mInterface.requestClassesSuccess(mList,list);

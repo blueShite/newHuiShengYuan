@@ -12,6 +12,9 @@ import com.xiaoyuan.campus_order.Base.BaseActivity;
 import com.xiaoyuan.campus_order.FootList.ShopCartRequest.ShopCartChangeInterface;
 import com.xiaoyuan.campus_order.FootList.ShopCartRequest.ShopcartRequest;
 import com.xiaoyuan.campus_order.Manage.LoginManage;
+import com.xiaoyuan.campus_order.NetWorks.RequestBean;
+import com.xiaoyuan.campus_order.NetWorks.RequestCallBack;
+import com.xiaoyuan.campus_order.NetWorks.RequestTools;
 import com.xiaoyuan.campus_order.R;
 import com.xiaoyuan.campus_order.ShopCartList.Adapter.ShopCartListAdapter;
 import com.xiaoyuan.campus_order.ShopCartList.Bean.ShopCartItemBean;
@@ -27,12 +30,15 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
+import okhttp3.Call;
 
 public class ShopCartListActivity extends BaseActivity implements ShopCartListInterface {
 
@@ -43,6 +49,7 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
     private String mResId;
     private List<ShopCartItemBean> mList = new ArrayList<>();
     private ShopCartListAdapter mAdapter;
+    private String promptStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,23 +111,7 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
             }
         }
         shopId = shopId.substring(1);
-        if(index>1){
-            AlertDialog.Builder builder = new AlertDialog.Builder(ShopCartListActivity.this);
-            builder.setTitle("提示");
-            builder.setMessage("跨窗口点餐会增加配送费用，增加的配送费用会由送餐员以现金形式返还，请放心点餐!");
-            final String finalShopId = shopId;
-            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface anInterface, int i) {
-                    mPresenter.requestSubmitShopCart(finalShopId,selecList);
-                }
-            });
-            builder.setNegativeButton("取消",null);
-            builder.show();
-            return;
-        }else {
-            mPresenter.requestSubmitShopCart(shopId,selecList);
-        }
+        requestPrompt(index+"",shopId,selecList);
 
     }
 
@@ -262,4 +253,48 @@ public class ShopCartListActivity extends BaseActivity implements ShopCartListIn
         builder.setNegativeButton("取消",null);
         builder.show();
     }
+
+    private void requestPrompt(String num, final String Id, final List<ShopCartItemBean> selecList){
+
+        showDialog();
+        Map<String,String> map = new HashMap<>();
+        map.put("num",num);
+        map.put("id",Id);
+        RequestTools.getInstance().postRequest("/api/shopping_hint.api.php", false, map, "", new RequestCallBack(ShopCartListActivity.this) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                super.onError(call, e, id);
+                dismissDialog();
+                Toasty.error(ShopCartListActivity.this,"请求失败").show();
+            }
+
+            @Override
+            public void onResponse(RequestBean response, int id) {
+                super.onResponse(response, id);
+                dismissDialog();
+                if(response.isRes()){
+                    if(response.getMes()!=null&&response.getMes().length()>0){
+                        promptStr = response.getMes();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ShopCartListActivity.this);
+                        builder.setTitle("提示");
+                        builder.setMessage(promptStr);
+                        final String finalShopId = Id;
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface anInterface, int i) {
+                                mPresenter.requestSubmitShopCart(finalShopId,selecList);
+                            }
+                        });
+                        builder.setNegativeButton("取消",null);
+                        builder.show();
+                    }else {
+                        mPresenter.requestSubmitShopCart(Id,selecList);
+                    }
+                }else {
+                    Toasty.error(ShopCartListActivity.this,response.getMes()).show();
+                }
+            }
+        });
+    }
+
 }

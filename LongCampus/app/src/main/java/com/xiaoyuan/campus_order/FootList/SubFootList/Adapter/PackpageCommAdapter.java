@@ -51,8 +51,12 @@ public class PackpageCommAdapter extends RecyclerView.Adapter<PackpageCommAdapte
 
         FeatureBean commodityBean = mList.get(position);
         holder.mTextPackCommName.setText(commodityBean.getDish());
-        double price = Double.parseDouble(commodityBean.getPrice())*Double.parseDouble(commodityBean.getDiscount());
-        holder.mTextPackCommSub.setText("¥" + AppUtils.doubleZhuanMa(price) + "元");
+        //double price = Double.parseDouble(commodityBean.getPrice())*Double.parseDouble(commodityBean.getDiscount());
+        if(commodityBean.getIntro()!=null&&commodityBean.getIntro().length()>0){
+            holder.mTextPackCommSub.setText(commodityBean.getIntro());
+        }else {
+            holder.mTextPackCommSub.setText("");
+        }
         holder.mTextPackCommOldPrice.setText("原价"+commodityBean.getPrice());
         holder.mTextPackCommNum.setText(commodityBean.getNums());
         Picasso.with(mContext).load(RequestTools.BaseUrl + commodityBean.getLitpic()).resize(120, 120).into(holder.mImagePackCommHeader);

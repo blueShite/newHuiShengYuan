@@ -28,9 +28,6 @@ import butterknife.ButterKnife;
 
 public class ShopCartOrderAdapter extends RecyclerView.Adapter<ShopCartOrderAdapter.ViewHolder> {
 
-    //定义成员变量mTouchItemPosition,用来记录手指触摸的EditText的位置
-    private int mTouchItemPosition = -1;
-
     private List<ShopCartItemBean> mList;
     private Context mContext;
     private ShopCartOrderInterface mInterface;
@@ -176,32 +173,6 @@ public class ShopCartOrderAdapter extends RecyclerView.Adapter<ShopCartOrderAdap
         holder.mEditShopcartOrderRemark.addTextChangedListener(watcher);
         holder.mEditShopcartOrderRemark.setTag(watcher);
 
-        /*holder.mEditShopcartOrderRemark.setText(bean.getRemark());
-        holder.mEditShopcartOrderRemark.setTag(position);
-        if (mTouchItemPosition == position) {
-            holder.mEditShopcartOrderRemark.requestFocus();
-            holder.mEditShopcartOrderRemark.setSelection(holder.mEditShopcartOrderRemark.getText().length());
-        } else {
-            holder.mEditShopcartOrderRemark.clearFocus();
-        }*/
-
-    }
-
-    private boolean canVerticalScroll(EditText editText) {
-        //滚动的距离
-        int scrollY = editText.getScrollY();
-        //控件内容的总高度
-        int scrollRange = editText.getLayout().getHeight();
-        //控件实际显示的高度
-        int scrollExtent = editText.getHeight() - editText.getCompoundPaddingTop() -editText.getCompoundPaddingBottom();
-        //控件内容总高度与实际显示高度的差值
-        int scrollDifference = scrollRange - scrollExtent;
-
-        if(scrollDifference == 0) {
-            return false;
-        }
-
-        return (scrollY > 0) || (scrollY < scrollDifference - 1);
     }
 
      @Override
